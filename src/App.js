@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+import Movies from './components/movies.jsx';
 import './App.css';
 
 function App() {
   return (
     <main className="container">
-      <h1>Welcome John to React.js</h1>
+    <Movies />
 
     </main>
   );
