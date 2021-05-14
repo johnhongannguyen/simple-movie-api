@@ -5,10 +5,11 @@ import Pagination from './common/pagination';
 class Movies extends Component {
     state = {  
         movies: getMovies(),
-        pageSize:4
+        pageSize:4,
+        currentPage: 1
     }
     handlePageChange = (page) =>{
-        console.log(page);
+        this.setState({currentPage: page});
 
     }
     handleDelete = (movie) =>{
@@ -27,6 +28,7 @@ class Movies extends Component {
     }
     render() { 
         const {length :count} = this.state.movies;
+        const {currentPage, pageSize} = this.state;
         if(count === 0) return <p>There are no movie in the database</p>
         return (  
             <React.Fragment>
@@ -61,8 +63,9 @@ class Movies extends Component {
             </table>
             <Pagination 
             itemsCount={count} 
-            pageSize={10}
+            pageSize={pageSize}
             onPageChange={this.handlePageChange}
+            currentPage={currentPage}
             />
             
             </React.Fragment>
