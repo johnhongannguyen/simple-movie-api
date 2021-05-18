@@ -3,16 +3,25 @@ import {getMovies} from '../services/fakeMovieService';
 import Like from './common/like';
 import Pagination from './common/pagination';
 import {paginate} from '../utils/paginate';
+import ListGroup from './common/listGroup';
+import {getGenres} from "../services/fakeGenreService";
 
-class Movies extends Component {
+class Movies extends Component {            
     state = {  
-        movies: getMovies(),
+        movies: [],
+        genres: [],
         pageSize:4,
         currentPage: 1
+    }
+    componentDidMount(){
+        this.setState({movies: getMovies(), genres: getGenres()});
     }
     handlePageChange = (page) =>{
         this.setState({currentPage: page});
 
+    }
+    handleGenreSelect = (genre) => {
+        console.log(genre);
     }
     handleDelete = (movie) =>{
         // console.log(movie);
@@ -34,7 +43,14 @@ class Movies extends Component {
         if(count === 0) return <p>There are no movie in the database</p>
         const movies = paginate(allMovies, currentPage, pageSize);
         return (  
-            <React.Fragment>
+            <div className="row">
+                <div className="col-2">
+                    <ListGroup 
+                    items={this.state.genres}
+                    onItemSelect={this.handleGenreSelect}
+                    />
+                </div>
+                <div className="col">
                 <p>Showing {count} movies in the database.</p>
             <table className="table">
                 <thead>
@@ -70,8 +86,10 @@ class Movies extends Component {
             onPageChange={this.handlePageChange}
             currentPage={currentPage}
             />
+                </div>
+               
             
-            </React.Fragment>
+            </div>
         
             
             );
