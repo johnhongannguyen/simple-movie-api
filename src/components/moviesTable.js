@@ -36,4 +36,4 @@ const MoviesTable = (props) => {
      );
 }
  
-export default MoviesTable;props
+export default MoviesTable
