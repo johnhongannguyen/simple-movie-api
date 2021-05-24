@@ -33,4 +33,4 @@ class TableHeader extends Component {
     }
 }
  
-export default TableHeader
+export default TableHeader;
