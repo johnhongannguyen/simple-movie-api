@@ -7,12 +7,12 @@ const Table = (props) => {
     return ( 
         <table className="table">
         <TableHeader 
-        columns ={this.columns}
+        columns ={columns}
         sortColumn ={sortColumn}
         onSort ={onSort}
         />
         <TableBody 
-         columns={this.columns}
+         columns={columns}
          data={data}
         />
          
